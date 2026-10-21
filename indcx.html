@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JM Produtora | Comerciais na SBT & Produção Audiovisual</title>
+    <!-- Google Fonts & FontAwesome para ícones -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #d32f2f; /* Vermelho SBT/Vídeo */
+            --primary-dark: #b71c1c;
+            --accent: #ff9800;
+            --dark: #121212;
+            --dark-card: #1e1e1e;
+            --light: #f5f5f5;
+            --gray: #888;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--light);
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #ccc;
+            max-width: 700px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            padding: 14px 35px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.4);
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Seção Carrossel 3D */
+        .carousel-section {
+            padding: 100px 20px;
+            background: #181818;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            color: var(--gray);
+            margin-bottom: 60px;
+        }
+
+        .scene {
+            width: 300px;
+            height: 200px;
+            margin: 0 auto;
+            perspective: 1000px;
+        }
+
+        .carousel {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .carousel__cell {
+            position: absolute;
+            width: 280px;
+            height: 180px;
+            left: 10px;
+            top: 10px;
+            background: var(--dark-card);
+            border-radius: 12px;
+            border: 2px solid rgba(255,255,255,0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .carousel__cell img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+        }
+
+        .carousel__cell .info {
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            padding: 15px;
+            text-align: left;
+        }
+
+        .carousel-controls {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .carousel-btn {
+            background: var(--dark-card);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .carousel-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        /* Seção Preços SBT */
+        .pricing-section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .pricing-card {
+            background: var(--dark-card);
+            border-radius: 16px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card.featured {
+            border: 2px solid var(--primary);
+            transform: scale(1.03);
+            background: linear-gradient(180deg, #1e1e1e 0%, #251616 100%);
+        }
+
+        .badge {
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: var(--primary);
+            color: white;
+            padding: 5px 40px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            transform: rotate(45deg);
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 25px;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .pricing-card ul li {
+            color: #ddd;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pricing-card ul li i {
+            color: var(--primary);
+        }
+
+        /* Outros Serviços (Lojas, Aniversários, 15 anos) */
+        .services-section {
+            padding: 80px 20px;
+            background: #181818;
+            text-align: center;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 40px auto 0 auto;
+        }
+
+        .service-box {
+            background: var(--dark-card);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: var(--transition);
+        }
+
+        .service-box:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .service-box i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .service-box h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .service-box p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Modal de Checkout */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal {
+            background: var(--dark-card);
+            width: 100%;
+            max-width: 480px;
+            padding: 40px;
+            border-radius: 20px;
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.1);
+            animation: modalPop 0.3s ease;
+        }
+
+        @keyframes modalPop {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .modal h3 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .payment-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .pay-tab {
+            flex: 1;
+            padding: 10px;
+            background: #2a2a2a;
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .pay-tab.active {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .payment-content {
+            display: none;
+        }
+
+        .payment-content.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            background: #121212;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .qrcode-box {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .qrcode-box img {
+            width: 160px;
+            height: 160px;
+        }
+
+        .copy-pix-btn {
+            background: #2e7d32;
+            color: white;
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: #0a0a0a;
+            color: var(--gray);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">JM <span>Produtora</span></div>
+        <nav>
+            <ul>
+                <li><a href="#home">Início</a></li>
+                <li><a href="#portfolio">Portfólio 3D</a></li>
+                <li><a href="#sbt">Pacotes SBT</a></li>
+                <li><a href="#servicos">Outros Serviços</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Leve sua Marca para a <span>SBT</span></h1>
+        <p>A JM Produtora transforma seu negócio e seus momentos especiais em grandes produções audiovisuais de alto impacto na televisão e internet.</p>
+        <a href="#sbt" class="btn">Ver Pacotes SBT</a>
+    </section>
+
+    <!-- Seção Carrossel 3D -->
+    <section class="carousel-section" id="portfolio">
+        <h2 class="section-title">Portfólio Audiovisual</h2>
+        <p class="section-subtitle">Nossas produções em destaque (Arraste ou clique para navegar)</p>
+        
+        <div class="scene">
+            <div class="carousel" id="carousel3D">
+                <div class="carousel__cell">
+                    <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=400&q=80" alt="Comercial TV">
+                    <div class="info"><h4>Comercial SBT</h4><p>Alta Definição</p></div>
+                </div>
+                <div class="carousel__cell">
+                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=400&q=80" alt="Festa 15 Anos">
+                    <div class="info"><h4>Festas 15 Anos</h4><p>Emoção Pura</p></div>
+                </div>
+                <div class="carousel__cell">
+                    <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=400&q=80" alt="Cobertura Lojas">
+                    <div class="info"><h4>Lojas & Comércios</h4><p>Vendas em Alta</p></div>
+                </div>
+                <div class="carousel__cell">
+                    <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=400&q=80" alt="Aniversários">
+                    <div class="info"><h4>Aniversários</h4><p>Momentos Únicos</p></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-controls">
+            <button class="carousel-btn" id="prevBtn"><i class="fas fa-arrow-left"></i> Anterior</button>
+            <button class="carousel-btn" id="nextBtn">Próximo <i class="fas fa-arrow-right"></i></button>
+        </div>
+    </section>
+
+    <!-- Seção Pacotes SBT -->
+    <section class="pricing-section" id="sbt">
+        <div style="text-align: center;">
+            <h2 class="section-title">Anuncie na SBT com a JM</h2>
+            <p class="section-subtitle">Escolha o pacote ideal para alavancar sua autoridade no mercado</p>
+        </div>
+
+        <div class="pricing-grid">
+            <!-- Pacote 1 -->
+            <div class="pricing-card">
+                <h3>Comercial SBT</h3>
+                <div class="price">R$ 6.000</div>
+                <ul>
+                    <li><i class="fas fa-check"></i> Produção de Comercial Profissional</li>
+                    <li><i class="fas fa-check"></i> Veiculação garantida na grade SBT</li>
+                    <li><i class="fas fa-check"></i> Edição cinematográfica</li>
+                    <li><i class="fas fa-check"></i> Direção de arte especializada</li>
+                </ul>
+                <button class="btn" onclick="openCheckout('Comercial SBT', 6000)">Contratar Agora</button>
+            </div>
+
+            <!-- Pacote 2 (Destaque) -->
+            <div class="pricing-card featured">
+                <div class="badge">POPULAR</div>
+                <h3>Comercial + Jornalista</h3>
+                <div class="price">R$ 8.000</div>
+                <ul>
+                    <li><i class="fas fa-check"></i> Comercial exclusivo na SBT</li>
+                    <li><i class="fas fa-check"></i> <strong>Jornalista ao vivo</strong> falando sobre seu negócio</li>
+                    <li><i class="fas fa-check"></i> Máxima credibilidade junto ao público</li>
+                    <li><i class="fas fa-check"></i> Roteiro personalizado</li>
+                </ul>
+                <button class="btn" onclick="openCheckout('Comercial + Jornalista', 8000)">Contratar Agora</button>
+            </div>
+
+            <!-- Pacote 3 -->
+            <div class="pricing-card">
+                <h3>Programa Completo</h3>
+                <div class="price">R$ 12.000</div>
+                <ul>
+                    <li><i class="fas fa-check"></i> Comercial veiculado na SBT</li>
+                    <li><i class="fas fa-check"></i> Jornalista falando do comercial</li>
+                    <li><i class="fas fa-check"></i> <strong>Uso direto no programa</strong> de TV</li>
+                    <li><i class="fas fa-check"></i> Cobertura estendida e bônus digital</li>
+                </ul>
+                <button class="btn" onclick="openCheckout('Programa Completo SBT', 12000)">Contratar Agora</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Outros Serviços -->
+    <section class="services-section" id="servicos">
+        <h2 class="section-title">Outras Produções</h2>
+        <p class="section-subtitle">Especialistas em eternizar e impulsionar momentos</p>
+        
+        <div class="services-grid">
+            <div class="service-box">
+                <i class="fas fa-store"></i>
+                <h4>Filmagens de Lojas</h4>
+                <p>Mostre seu espaço comercial com imagens aéreas e internas de altíssima qualidade para atrair mais clientes.</p>
+            </div>
+            <div class="service-box">
+                <i class="fas fa-birthday-cake"></i>
+                <h4>Aniversários</h4>
+                <p>Cobertura completa em vídeo e foto para eternizar cada sorriso e detalhe da sua comemoração.</p>
+            </div>
+            <div class="service-box">
+                <i class="fas fa-glass-cheers"></i>
+                <h4>Festas de 15 Anos</h4>
+                <p>Produções cinematográficas feitas sob medida para o dia mais esperado da sua vida.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Checkout -->
+    <div class="modal-overlay" id="checkoutModal">
+        <div class="modal">
+            <button class="close-modal" onclick="closeCheckout()">&times;</button>
+            <h3 id="modalTitle">Finalizar Contratação</h3>
+            
+            <div class="payment-tabs">
+                <button class="pay-tab active" onclick="switchTab('pix')"><i class="fab fa-pix"></i> PIX</button>
+                <button class="pay-tab" onclick="switchTab('card')"><i class="fas fa-credit-card"></i> Cartão</button>
+            </div>
+
+            <!-- Aba PIX -->
+            <div id="pixContent" class="payment-content active">
+                <div class="qrcode-box">
+                    <!-- QR Code simulado via API pública -->
+                    <img id="qrCodeImg" src="" alt="QR Code PIX">
+                </div>
+                <p style="text-align: center; font-size: 0.9rem; margin-bottom: 10px; color: var(--gray);">Escaneie o QR Code com o app do seu banco ou clique abaixo:</p>
+                <input type="text" id="pixKeyInput" value="00020126580014br.gov.bcb.pix...jmprodutora" readonly style="width:100%; padding:10px; background:#121212; border:1px solid #444; color:#fff; border-radius:6px; font-size:0.8rem; text-align:center;">
+                <button class="copy-pix-btn" onclick="copyPix()"><i class="fas fa-copy"></i> Copiar Código PIX</button>
+            </div>
+
+            <!-- Aba Cartão -->
+            <div id="cardContent" class="payment-content">
+                <form onsubmit="handleCardSubmit(event)">
+                    <div class="form-group">
+                        <label>Nome no Cartão</label>
+                        <input type="text" placeholder="Nome Completo" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Número do Cartão</label>
+                        <input type="text" placeholder="0000 0000 0000 0000" required>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <div class="form-group" style="flex: 1;">
+                            <label>Validade</label>
+                            <input type="text" placeholder="MM/AA" required>
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label>CVV</label>
+                            <input type="password" placeholder="123" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">Pagar com Cartão</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 JM Produtora. Todos os direitos reservados. Desenvolvido com excelência sênior.</p>
+    </footer>
+
+    <!-- JavaScript Integrado -->
+    <script>
+        // Carrossel 3D Lógica
+        const carousel = document.getElementById('carousel3D');
+        const cells = carousel.querySelectorAll('.carousel__cell');
+        let selectedIndex = 0;
+        const cellCount = cells.length;
+
+        function updateCarousel() {
+            const angle = (selectedIndex / cellCount) * -360;
+            carousel.style.transform = `translateZ(-250px) rotateY(${angle}deg)`;
+        }
+
+        cells.forEach((cell, index) => {
+            const cellAngle = (index / cellCount) * 360;
+            cell.style.transform = `rotateY(${cellAngle}deg) translateZ(250px)`;
+        });
+
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            selectedIndex++;
+            updateCarousel();
+        });
+
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            selectedIndex--;
+            updateCarousel();
+        });
+
+        // Inicializa carrossel
+        updateCarousel();
+
+        // Autoplay do carrossel a cada 4 segundos
+        setInterval(() => {
+            selectedIndex++;
+            updateCarousel();
+        }, 4000);
+
+        // Sistema de Modal e Checkout
+        const modal = document.getElementById('checkoutModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const qrCodeImg = document.getElementById('qrCodeImg');
+
+        function openCheckout(packageName, price) {
+            modalTitle.innerText = `${packageName} - R$ ${price.toLocaleString('pt-BR')},00`;
+            // Gera QR Code dinâmico usando API pública com base no preço/pacote
+            qrCodeImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=JM_Produtora_${packageName}_R$${price}`;
+            modal.style.display = 'flex';
+        }
+
+        function closeCheckout() {
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeCheckout();
+            }
+        }
+
+        // Alternar abas Pix / Cartão
+        function switchTab(tab) {
+            const pixTab = document.querySelector('.payment-tabs button:nth-child(1)');
+            const cardTab = document.querySelector('.payment-tabs button:nth-child(2)');
+            const pixContent = document.getElementById('pixContent');
+            const cardContent = document.getElementById('cardContent');
+
+            if(tab === 'pix') {
+                pixTab.classList.add('active');
+                cardTab.classList.remove('active');
+                pixContent.classList.add('active');
+                cardContent.classList.remove('active');
+            } else {
+                cardTab.classList.add('active');
+                pixTab.classList.remove('active');
+                cardContent.classList.add('active');
+                pixContent.classList.remove('active');
+            }
+        }
+
+        // Copiar Chave PIX
+        function copyPix() {
+            const copyText = document.getElementById("pixKeyInput");
+            copyText.select();
+            navigator.clipboard.writeText(copyText.value);
+            alert("Código PIX copiado com sucesso! Cole no app do seu banco.");
+        }
+
+        // Simulação de Pagamento com Cartão
+        function handleCardSubmit(event) {
+            event.preventDefault();
+            alert("Pagamento com cartão processado e aprovado com sucesso! Entraremos em contato.");
+            closeCheckout();
+        }
+    </script>
+</body>
+</html>
